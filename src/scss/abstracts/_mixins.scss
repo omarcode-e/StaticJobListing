@@ -1,0 +1,11 @@
+@use "sass:map";
+@use "./variables" as *;
+
+@mixin get-props-from-map($map, $values...) {
+  $prefix: map.get($map, "prefix");
+  @each $v in $values {
+    @each $k, $v2 in map.get($map, $v) {
+      --#{$prefix}-#{$k}: #{$v2};
+    }
+  }
+}

@@ -1,0 +1,31 @@
+@use "../abstracts/" as *;
+:root {
+  @include get-props-from-map($font-sizes, "sizes");
+  @include get-props-from-map($font-weight, "weights");
+  @include get-props-from-map($font-family, "fonts");
+  @include get-props-from-map($text-colors, "colors");
+  @include get-props-from-map($background-colors, "colors");
+  @include get-props-from-map($button-colors, "colors");
+  @include get-props-from-map($label-colors, "colors");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  --font-size: var(--font-size-s);
+  --font-family: var(--font-family-body);
+  --font-weight: var(--font-weight-medium);
+
+  box-sizing: border-box;
+  font-family: var(--font-family), sans-serif;
+  font-weight: var(--font-weight);
+  font-size: var(--font-size);
+}

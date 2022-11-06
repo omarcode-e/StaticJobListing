@@ -1,0 +1,59 @@
+/* Global variables */
+
+$font-sizes: (
+  prefix: "font-size",
+  sizes: (
+    s: calc(15 / 16) + rem,
+    md: 1rem,
+    lg: calc(18 / 16) + rem,
+  ),
+);
+
+$font-family: (
+  prefix: "font-family",
+  fonts: (
+    body: "League Spartan",
+  ),
+);
+
+$font-weight: (
+  prefix: "font-weight",
+  weights: (
+    medium: 500,
+    bold: 700,
+  ),
+);
+
+$background-colors: (
+  prefix: "background",
+  colors: (
+    primary: #eef8f7,
+    secondary: #ffffff,
+  ),
+);
+
+$text-colors: (
+  prefix: "text",
+  colors: (
+    primary: #61a79f,
+    secondary: #f5f5f5,
+    tertiary: #1b2121,
+    accent: #838989,
+  ),
+);
+
+$button-colors: (
+  prefix: "button",
+  colors: (
+    primary: #eef8f7,
+    primary-hover: #61a79f,
+  ),
+);
+
+$label-colors: (
+  prefix: "label",
+  colors: (
+    primary: #61a79f,
+    secondary: #1b2121,
+  ),
+);
