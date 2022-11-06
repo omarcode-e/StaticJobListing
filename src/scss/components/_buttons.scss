@@ -1,0 +1,28 @@
+@use "../abstracts/" as *;
+
+.btn {
+  --button-color: var(--text-primary);
+  --button-color-hover: var(--text-secondary);
+  --button-bg-color: var(--button-primary);
+  --button-bg-hover: var(--button-primary-hover);
+  --button-font-weight: var(--font-weight-bold);
+  --button-font-family: var(--font-family-body);
+  --button-font-size: var(var(--font-size-lg));
+
+  cursor: pointer;
+  border: 0;
+  padding: rem(7) rem(7) rem(6) rem(7);
+  font-family: var(--button-font-family), sans-serif;
+  font-weight: var(--button-font-weight, 400);
+  font-size: var(--button-font-size);
+  color: var(--button-color);
+  background-color: var(--button-bg-color);
+
+  &:hover {
+    color: var(--button-color-hover);
+    background-color: var(--button-bg-hover);
+  }
+}
+
+.btn--tablet {
+}
