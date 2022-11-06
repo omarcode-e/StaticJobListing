@@ -4,7 +4,9 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { argv } = require("process");
 
 const config = {
-  entry: "./src/js/index.js",
+  entry: {
+    app: "./src/js/app.js",
+  },
 
   target: "web",
   devServer: {
@@ -65,7 +67,7 @@ const config = {
   },
 
   output: {
-    filename: "index.bundle.js",
+    filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
     clean: true,
   },
