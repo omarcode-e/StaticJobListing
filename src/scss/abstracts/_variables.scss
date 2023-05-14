@@ -1,11 +1,13 @@
 /* Global variables */
 
+$base: 16;
 $font-sizes: (
   prefix: "font-size",
   sizes: (
-    s: calc(15 / 16) + rem,
-    md: 1rem,
-    lg: calc(18 / 16) + rem,
+    xs: calc(13 / $base) + rem,
+    s: calc(15 / $base) + rem,
+    md: calc(16 / $base) + rem,
+    lg: calc(18 / $base) + rem,
   ),
 );
 
@@ -27,8 +29,17 @@ $font-weight: (
 $background-colors: (
   prefix: "background",
   colors: (
-    primary: #eef8f7,
+    primary: #effafa,
     secondary: #ffffff,
+    tertiary: #61a79f,
+  ),
+);
+
+$border-colors: (
+  prefix: "border",
+  colors: (
+    primary: #61a79f,
+    secondary: #cacbcb,
   ),
 );
 
@@ -55,5 +66,12 @@ $label-colors: (
   colors: (
     primary: #61a79f,
     secondary: #1b2121,
+  ),
+);
+
+$icon-colors: (
+  prefix: "icon",
+  colors: (
+    primary: #b8bab9,
   ),
 );

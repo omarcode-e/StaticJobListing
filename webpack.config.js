@@ -1,6 +1,7 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 const { argv } = require("process");
 
 const config = {
@@ -29,6 +30,8 @@ const config = {
     new MiniCssExtractPlugin({
       filename: "styles.css",
     }),
+
+    new CopyPlugin({ patterns: [{ from: "./src/images", to: "images" }] }),
   ],
 
   module: {

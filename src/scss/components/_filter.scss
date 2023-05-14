@@ -1,0 +1,11 @@
+@use "../abstracts/" as *;
+
+.filter {
+  --filter-visibility: none;
+
+  display: var(--filter-visibility);
+  width: 90%;
+  height: rem(100);
+  padding-block: rem(10);
+  background-color: var(--background-secondary);
+}

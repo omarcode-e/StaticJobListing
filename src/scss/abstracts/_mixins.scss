@@ -9,3 +9,9 @@
     }
   }
 }
+
+@mixin set-media($property, $value) {
+  @media only screen and (#{$property}: #{$value}) {
+    @content;
+  }
+}

@@ -1,12 +1,14 @@
 @use "../abstracts/" as *;
 :root {
+  @include get-props-from-map($background-colors, "colors");
+  @include get-props-from-map($button-colors, "colors");
+  @include get-props-from-map($border-colors, "colors");
   @include get-props-from-map($font-sizes, "sizes");
   @include get-props-from-map($font-weight, "weights");
   @include get-props-from-map($font-family, "fonts");
-  @include get-props-from-map($text-colors, "colors");
-  @include get-props-from-map($background-colors, "colors");
-  @include get-props-from-map($button-colors, "colors");
   @include get-props-from-map($label-colors, "colors");
+  @include get-props-from-map($text-colors, "colors");
+  @include get-props-from-map($icon-colors, "colors");
 }
 
 * {

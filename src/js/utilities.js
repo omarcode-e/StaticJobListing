@@ -12,7 +12,7 @@ function render(parentElement, html, position) {
 }
 
 function clear(parentElement) {
-  return (parentElement.innerHtml = "");
+  return (parentElement.innerHTML = "");
 }
 
 export { render, clear };

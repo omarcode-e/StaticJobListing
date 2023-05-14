@@ -7,7 +7,7 @@
   --button-bg-hover: var(--button-primary-hover);
   --button-font-weight: var(--font-weight-bold);
   --button-font-family: var(--font-family-body);
-  --button-font-size: var(var(--font-size-lg));
+  --button-font-size: var(--font-size-lg);
 
   cursor: pointer;
   border: 0;
@@ -25,4 +25,20 @@
 }
 
 .btn--tablet {
+}
+
+.btn--filter {
+}
+
+.btn--clear {
+  --button-clear-color: var(--text-primary);
+  --button-clear-color-hover: var(--button-color);
+  padding: 0;
+  background-color: transparent;
+
+  &:hover {
+    color: var(--button-clear-color-hover);
+    text-decoration: underline;
+    background-color: transparent;
+  }
 }

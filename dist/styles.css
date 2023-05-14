@@ -3,22 +3,27 @@
   \*******************************************************************************************************************************************************/
 /* Global variables */
 :root {
+  --background-primary: #effafa;
+  --background-secondary: #ffffff;
+  --background-tertiary: #61a79f;
+  --button-primary: #eef8f7;
+  --button-primary-hover: #61a79f;
+  --border-primary: #61a79f;
+  --border-secondary: #cacbcb;
+  --font-size-xs: 0.8125rem;
   --font-size-s: 0.9375rem;
   --font-size-md: 1rem;
   --font-size-lg: 1.125rem;
   --font-weight-medium: 500;
   --font-weight-bold: 700;
   --font-family-body: League Spartan;
+  --label-primary: #61a79f;
+  --label-secondary: #1b2121;
   --text-primary: #61a79f;
   --text-secondary: #f5f5f5;
   --text-tertiary: #1b2121;
   --text-accent: #838989;
-  --background-primary: #eef8f7;
-  --background-secondary: #ffffff;
-  --button-primary: #eef8f7;
-  --button-primary-hover: #61a79f;
-  --label-primary: #61a79f;
-  --label-secondary: #1b2121;
+  --icon-primary: #b8bab9;
 }
 
 * {
@@ -36,11 +41,8 @@ html {
   --font-family: var(--font-family-body);
   --font-weight: var(--font-weight-medium);
   box-sizing: border-box;
-  font-family: League Spartan, sans-serif;
   font-family: var(--font-family), sans-serif;
-  font-weight: 500;
   font-weight: var(--font-weight);
-  font-size: 0.9375rem;
   font-size: var(--font-size);
 }
 
@@ -56,12 +58,11 @@ html {
   --button-bg-hover: var(--button-primary-hover);
   --button-font-weight: var(--font-weight-bold);
   --button-font-family: var(--font-family-body);
-  --button-font-size: var(var(--font-size-lg));
+  --button-font-size: var(--font-size-lg);
   cursor: pointer;
   border: 0;
   padding: 0.4666666667rem 0.4666666667rem 0.4rem 0.4666666667rem;
   font-family: var(--button-font-family), sans-serif;
-  font-weight: 400;
   font-weight: var(--button-font-weight, 400);
   font-size: var(--button-font-size);
   color: var(--button-color);
@@ -72,8 +73,128 @@ html {
   background-color: var(--button-bg-hover);
 }
 
-.container {
+.job-listing {
+  --job-listing-background-color: var(--background-secondary);
+  --job-listing-border-color: var(--border-primary);
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  padding: 2.2666666667rem 1.8rem 1.5rem 1.1rem;
+  border-radius: 0.4rem;
+  -webkit-border-start: 0.4rem solid var(--border-primary);
+          border-inline-start: 0.4rem solid var(--border-primary);
+  background-color: var(--job-listing-background-color);
+}
+.job-listing__tablets {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 1.1333333333rem;
+  -webkit-margin-before: 1.0666666667rem;
+          margin-block-start: 1.0666666667rem;
+  -webkit-padding-before: 1.0666666667rem;
+          padding-block-start: 1.0666666667rem;
+  -webkit-border-before: 0.0666666667rem solid var(--border-secondary);
+          border-block-start: 0.0666666667rem solid var(--border-secondary);
+}
+@media only screen and (min-width: 64em) {
+  .job-listing__tablets {
+    border: 0;
+  }
+}
+
+.job-info {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 15.4rem;
+  align-items: center;
+  column-gap: 0.6666666667rem;
+  /* 
+  Add ecllipse icon to each "job-listing" item 
+  that precede "job-title" except the last item 
+  */
+}
+.job-info__company-logo {
+  position: absolute;
+  width: 3.3333333333rem;
+  height: 3.3333333333rem;
+  bottom: 115%;
+}
+.job-info__company-logo img {
+  width: 100%;
+}
+.job-info__company-name {
+  -webkit-margin-end: 0.9333333333rem;
+          margin-inline-end: 0.9333333333rem;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+.job-info__label {
+  padding-inline: 0.6666666667rem;
+  padding-block: 0.4666666667rem 0.2666666667rem;
+  border-radius: 0.9333333333rem;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.job-info__label[data-label=new] {
+  background-color: var(--label-primary);
+}
+.job-info__label[data-label=featured] {
+  background-color: var(--label-secondary);
+}
+.job-info__job-title {
+  flex-basis: 100%;
+  padding-block: 0.8666666667rem 1.2rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--text-tertiary);
+}
+.job-info__job-title ~ p:not(p:last-of-type) {
+  display: flex;
+  align-items: center;
+}
+.job-info__job-title ~ p:not(p:last-of-type)::after {
+  -webkit-margin-start: 0.6666666667rem;
+          margin-inline-start: 0.6666666667rem;
+  content: url(98cde4dad6369750c64b.svg);
+}
+.job-info__post-time {
+  flex-basis: 25%;
+  color: var(--text-accent);
+}
+.job-info__contract {
+  flex-basis: 30%;
+  color: var(--text-accent);
+}
+.job-info__location {
+  color: var(--text-accent);
+}
+
+#header {
+  height: 11rem;
+  background: var(--background-tertiary) url(8694f4668c94cdc9d16e.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+#content {
+  --content-background-color: var(--background-primary);
   display: flex;
   flex-direction: column;
   align-items: center;
+  row-gap: 2.6666666667rem;
+  background-color: var(--content-background-color);
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
 }
