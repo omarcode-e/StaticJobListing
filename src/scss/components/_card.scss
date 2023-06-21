@@ -1,0 +1,13 @@
+@use "../abstracts/" as *;
+
+.card {
+  --card-box-shadow-color: #d4e9ec;
+  --card-background-color: var(--background-secondary);
+
+  @include flex-row-center-y;
+  padding-block: rem(34) rem(22.5);
+  padding-inline: rem(16.5) rem(27);
+  border-radius: rem(6);
+  background-color: var(--card-background-color);
+  box-shadow: 0 rem(8) rem(16) 0 var(--card-box-shadow-color);
+}

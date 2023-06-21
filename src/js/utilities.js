@@ -15,4 +15,8 @@ function clear(parentElement) {
   return (parentElement.innerHTML = "");
 }
 
-export { render, clear };
+function getElementPropValue(elment, property, pseudoElt = null) {
+  return window.getComputedStyle(elment, pseudoElt)[property];
+}
+
+export { render, clear, getElementPropValue };

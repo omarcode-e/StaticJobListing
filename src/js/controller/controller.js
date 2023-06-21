@@ -15,21 +15,30 @@ async function controlJobListing() {
 async function controlJobButtons(e) {
   const buttonValue = TabletButtonView.getTabletValue(e);
   const filteredEntries = await model.filterJobEntries(buttonValue);
+  let isFilterVisible = false;
   // Render all job entries if there are no filtered results,
   // Else render filtered results
   // console.log("[contorJobButtons]", model.state.filterQuery);
+  // if (!isFilterVisible) {
+  //   filterView.removeFilterView();
+  //   filterView.renderFilterView();
+  //   isFilterVisible = true;
+  // }
+
   if (filteredEntries.length === 0) {
     jobListingView.removeJobEntries();
     filterView.removeAllFilterButtons();
+    filterView.removeFilterView();
+    // isFilterVisible = false;
     return jobListingView.renderJobEntries(
       jobListingView.jobListingContainer,
       model.state.jobEntries
     );
   }
 
-  jobListingView.removeJobEntries();
   filterView.addFilterButton(model.state.filterQuery);
   filterView.addFilterClearButton();
+  jobListingView.removeJobEntries();
   jobListingView.renderJobEntries(
     jobListingView.jobListingContainer,
     filteredEntries
@@ -39,13 +48,20 @@ async function controlJobButtons(e) {
 async function controlFilterButtons(e) {
   filterView.removeFilterButton(e.target.value);
   model.removeFilterQuery(e.target.value);
+  jobListingView.removeJobEntries();
   if (model.state.filterQuery.length === 0) {
     filterView.removeAllFilterButtons();
+    filterView.removeFilterView();
+    return jobListingView.renderJobEntries(
+      jobListingView.jobListingContainer,
+      model.state.jobEntries
+    );
   }
-  // console.log("[contorFilterButtons]", model.state.filterQuery);
+
+  const filteredEntries = await model.filterJobEntries(null);
   jobListingView.renderJobEntries(
     jobListingView.jobListingContainer,
-    model.state.jobEntries
+    filteredEntries
   );
 }
 
@@ -57,6 +73,7 @@ async function controlFilterClearButton() {
   model.clearFilterQueries();
   jobListingView.removeJobEntries();
   filterView.removeAllFilterButtons();
+  filterView.removeFilterView();
   jobListingView.renderJobEntries(
     jobListingView.jobListingContainer,
     model.state.jobEntries
@@ -65,7 +82,7 @@ async function controlFilterClearButton() {
 }
 
 controlJobListing();
-filterView.filterView();
+filterView.renderFilterView();
 filterView.filterClearButtonClickHandler(controlFilterClearButton);
 filterView.filterClickHandler(controlFilterButtons);
 TabletButtonView.TabletClickHandler(controlJobButtons);

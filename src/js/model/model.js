@@ -2,11 +2,12 @@ import { async } from "regenerator-runtime";
 import data from "../../data/data.json";
 
 const state = {
-  jobEntries: data,
+  jobEntries: [...data],
   filterQuery: [],
 };
 
 async function dispatchFilterQuery(query) {
+  if (!query) return;
   if (state.filterQuery.includes(query)) {
     return state.filterQuery.splice(state.filterQuery.indexOf(query), 1);
   }
@@ -80,11 +81,11 @@ const matchAllCategories = function (arr, filterQueries) {
 };
 
 async function filterJobEntries(query) {
-  dispatchFilterQuery(query);
+  await dispatchFilterQuery(query);
   const filteredRole = filterRole(state.jobEntries, state.filterQuery);
   const filteredLevel = filterLevel(state.jobEntries, state.filterQuery);
-  const filteredTools = filterTools(state.jobEntries, query);
-  const filteredLanguages = filterLanguages(state.jobEntries, query);
+  const filteredTools = filterTools(state.jobEntries);
+  const filteredLanguages = filterLanguages(state.jobEntries);
   const filteredEntries = removeDuplicate([
     ...filteredRole,
     ...filteredLevel,

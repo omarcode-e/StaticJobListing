@@ -1,19 +1,38 @@
 @use "../abstracts/" as *;
 
 .job-listing {
-  --job-listing-background-color: var(--background-secondary);
   --job-listing-border-color: var(--border-primary);
-  display: flex;
-  flex-wrap: wrap;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
   align-content: center;
   align-items: center;
-  justify-content: space-between;
-  width: 80%;
-  padding: rem(34) rem(27) rem(22.5) rem(16.5);
-  border-radius: rem(6);
-  background-color: var(--job-listing-background-color);
+
+  @include set-media(min-width, 64em) {
+    grid-template-columns: rem(120) 1fr 1fr;
+  }
+
+  &__company-logo {
+    position: absolute;
+    width: rem(50);
+    height: rem(50);
+    top: -10%;
+    left: 5%;
+
+    img {
+      width: 100%;
+    }
+
+    @include set-media(min-width, 64em) {
+      position: relative;
+      width: rem(88);
+      height: rem(88);
+      top: 0;
+    }
+  }
 
   &__tablets {
+    transition: padding 300ms ease-in;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -23,7 +42,10 @@
     border-block-start: rem(1) solid var(--border-secondary);
 
     @include set-media(min-width, 64em) {
+      margin: 0;
+      padding: 0;
       border: 0;
+      justify-self: end;
     }
   }
 
@@ -33,23 +55,11 @@
 }
 
 .job-info {
-  position: relative;
   display: flex;
   flex-wrap: wrap;
   max-width: rem(231);
   align-items: center;
   column-gap: rem(10);
-
-  &__company-logo {
-    position: absolute;
-    width: rem(50);
-    height: rem(50);
-    bottom: 115%;
-
-    img {
-      width: 100%;
-    }
-  }
 
   &__company-name {
     margin-inline-end: rem(14);
@@ -73,6 +83,7 @@
     }
 
     &[data-label="featured"] {
+      margin-inline-end: rem(9);
       background-color: var(--label-secondary);
     }
   }
@@ -84,15 +95,26 @@
     color: var(--text-tertiary);
   }
 
-  /* 
-  Add ecllipse icon after "post-time", "contract"
-  */
-  &__job-title ~ p:not(p:last-of-type) {
+  // wrapper for company-name and labels
+  > div:nth-of-type(1) {
     display: flex;
     align-items: center;
-    &::after {
-      margin-inline-start: rem(10);
-      content: url("/src/icons/icon-ecllipse.svg");
+  }
+
+  // wrapper for post-time, contract and location
+  > div:nth-of-type(2) {
+    display: flex;
+    flex-basis: 90%;
+    align-items: center;
+    justify-content: space-between;
+    //  Add ecllipse icon after "post-time", "contract"
+    p:not(p:last-of-type) {
+      display: flex;
+      align-items: center;
+      &::after {
+        margin-inline-start: rem(10);
+        content: url("/src/icons/icon-ecllipse.svg");
+      }
     }
   }
 
@@ -101,7 +123,6 @@
   }
 
   &__contract {
-    flex-basis: 30%;
     color: var(--text-accent);
   }
 

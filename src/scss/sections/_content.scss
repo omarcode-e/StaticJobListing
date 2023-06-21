@@ -2,10 +2,12 @@
 
 #content {
   --content-background-color: var(--background-primary);
-
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
   row-gap: rem(40);
+  padding-block: 18vh 25vh;
+  padding-inline: 9vw;
+
   background-color: var(--content-background-color);
 }

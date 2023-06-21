@@ -1,11 +1,35 @@
 @use "../abstracts/" as *;
 
-.filter {
-  --filter-visibility: none;
-
-  display: var(--filter-visibility);
-  width: 90%;
-  height: rem(100);
-  padding-block: rem(10);
+.job-listing-filter {
+  transition: 250ms ease-out;
+  position: absolute;
+  top: -3.5%;
+  z-index: 1;
+  @include flex-row-center-y {
+    justify-content: space-between;
+  }
+  visibility: hidden;
+  height: 0;
+  padding-block: 0;
   background-color: var(--background-secondary);
+
+  > div {
+    @include flex-row-center-y {
+      column-gap: rem(16);
+    }
+  }
+}
+
+.open {
+  visibility: visible;
+  padding-block: rem(10);
+  height: rem(62);
+}
+
+.shrinking {
+  visibility: visible;
+}
+
+.hidden {
+  visibility: hidden;
 }
