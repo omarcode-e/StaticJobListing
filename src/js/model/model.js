@@ -4,6 +4,7 @@ import data from "../../data/data.json";
 const state = {
   jobEntries: [...data],
   filterQuery: [],
+  isFilterOpen: false,
 };
 
 async function dispatchFilterQuery(query) {

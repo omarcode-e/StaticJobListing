@@ -13,17 +13,16 @@ async function controlJobListing() {
 }
 
 async function controlJobButtons(e) {
-  const buttonValue = TabletButtonView.getTabletValue(e);
+  const buttonValue = e.target.value;
+
+  // Check if clicked filter button already exist
+  if (!model.state.filterQuery.includes(buttonValue)) {
+    filterView.addFilterButton(buttonValue);
+  } else {
+    filterView.removeFilterButton(buttonValue);
+  }
+
   const filteredEntries = await model.filterJobEntries(buttonValue);
-  let isFilterVisible = false;
-  // Render all job entries if there are no filtered results,
-  // Else render filtered results
-  // console.log("[contorJobButtons]", model.state.filterQuery);
-  // if (!isFilterVisible) {
-  //   filterView.removeFilterView();
-  //   filterView.renderFilterView();
-  //   isFilterVisible = true;
-  // }
 
   if (filteredEntries.length === 0) {
     jobListingView.removeJobEntries();
@@ -35,9 +34,11 @@ async function controlJobButtons(e) {
       model.state.jobEntries
     );
   }
+  if (!model.state.isFilterOpen) {
+    filterView.addFilterClearButton();
+    model.state.isFilterOpen = true;
+  }
 
-  filterView.addFilterButton(model.state.filterQuery);
-  filterView.addFilterClearButton();
   jobListingView.removeJobEntries();
   jobListingView.renderJobEntries(
     jobListingView.jobListingContainer,

@@ -1,5 +1,15 @@
 @use "../abstracts/" as *;
 
+@keyframes slide-in {
+  from {
+    translate: 20%;
+  }
+
+  to {
+    translate: 0%;
+  }
+}
+
 .job-listing-filter {
   transition: 250ms ease-out;
   position: absolute;
@@ -17,6 +27,10 @@
     @include flex-row-center-y {
       column-gap: rem(16);
     }
+  }
+
+  > div .btn--filter {
+    animation: slide-in 250ms ease-in;
   }
 }
 

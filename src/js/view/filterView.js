@@ -2,7 +2,11 @@ import { render, clear, getElementPropValue } from "../utilities";
 import { jobListingContainer } from "./jobListingView";
 
 export function renderFilterView() {
-  const html = `<div id="filter" class="card job-listing-filter"></div>`;
+  const html = `
+  <div id="filter" class="card job-listing-filter">
+    <div></div>
+  </div>
+  `;
   return render(jobListingContainer, html, "afterbegin");
 }
 
@@ -37,22 +41,18 @@ export function removeFilterView() {
   playFilterCollapseAnimation(filter);
 }
 
-function filterButtonMarkup(filterQueries) {
-  let buttons = "";
-  filterQueries.forEach(
-    (v) =>
-      (buttons += `<button class="btn btn--filter" value=${v}>${v}</button>`)
-  );
-  const buttonsWrapper = `<div >${buttons}</div>`;
-  return buttonsWrapper;
+function filterButtonMarkup(buttonValue) {
+  const btn = `<button class="btn btn--filter" value="${buttonValue}">${buttonValue}</button>`;
+  return btn;
 }
-export function addFilterButton(filterQuery) {
+
+export function addFilterButton(buttonValue) {
   const filter = document.getElementById("filter");
   const filterWrapper = document.getElementById("content");
   playFilterExpandAnimation(filter, filterWrapper);
-  clear(filter);
-  const filterBtn = filterButtonMarkup(filterQuery);
-  render(filter, filterBtn, "afterbegin");
+  const filterButtonsWrapper = document.querySelector("#filter > div");
+  const filterButtons = filterButtonMarkup(buttonValue);
+  render(filterButtonsWrapper, filterButtons, "beforeend");
 }
 
 export function addFilterClearButton() {
@@ -67,8 +67,8 @@ export function removeFilterButton(filterValue) {
 }
 
 export function removeAllFilterButtons() {
-  const container = document.getElementById("filter");
-  clear(container);
+  const filterButtonsWrapper = document.querySelector("#filter > div");
+  clear(filterButtonsWrapper);
 }
 
 export function filterClickHandler(handler) {
