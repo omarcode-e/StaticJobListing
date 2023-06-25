@@ -10,18 +10,36 @@ export function renderFilterView() {
   return render(jobListingContainer, html, "afterbegin");
 }
 
-function playFilterExpandAnimation(filter, wrapper) {
+function getFilterWidthOffset(filter, wrapper) {
   const wrapperWidth = wrapper.getBoundingClientRect().width;
-  const wrapperPadding = +getElementPropValue(wrapper, "paddingInline").replace(
+  const wrapperPadX = +getElementPropValue(wrapper, "paddingInline").replace(
     "px",
     ""
   );
-  const filterWidth = wrapperWidth - wrapperPadding * 2 - 43.5;
+  const filterPadXstart = +getElementPropValue(
+    filter,
+    "paddingInlineStart"
+  ).replace("px", "");
+  const filterPadXend = +getElementPropValue(
+    filter,
+    "paddingInlineEnd"
+  ).replace("px", "");
+  const finalWidth =
+    wrapperWidth - wrapperPadX * 2 - (filterPadXstart + filterPadXend);
+  return finalWidth;
+}
+
+function playFilterExpandAnimation(filter, wrapper) {
+  const wrapperWidth = wrapper.getBoundingClientRect().width;
+  const filterWidth = getFilterWidthOffset(filter, wrapper);
   if (!filter.classList.contains("open")) {
     filter.style.width = filterWidth + "px";
     filter.classList.remove("hidden");
     filter.classList.add("open");
   }
+  setTimeout(() => {
+    filter.style.width = `${(filterWidth * 100) / wrapperWidth}%`;
+  }, 200);
 }
 
 function playFilterCollapseAnimation(filter) {
@@ -61,6 +79,11 @@ export function addFilterClearButton() {
   render(container, clearBtn, "beforeend");
 }
 
+export function removeFilterClearButton() {
+  const filterClearButton = document.querySelector(".btn--clear");
+  filterClearButton.remove();
+}
+
 export function removeFilterButton(filterValue) {
   const btn = document.querySelector(`.btn--filter[value=${filterValue}]`);
   return btn.remove();
@@ -74,7 +97,7 @@ export function removeAllFilterButtons() {
 export function filterClickHandler(handler) {
   const container = document.getElementById("filter");
   return container.addEventListener("click", (e) => {
-    if (!e.target.matches(".btn--filter") || e.target.matches(".btn-clear"))
+    if (!e.target.matches(".btn--filter") || e.target.matches(".btn--clear"))
       return;
     handler(e);
   });

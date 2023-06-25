@@ -1,32 +1,22 @@
 @use "../abstracts/" as *;
 
-@keyframes slide-in {
-  from {
-    translate: 20%;
-  }
-
-  to {
-    translate: 0%;
-  }
-}
-
 .job-listing-filter {
   transition: 250ms ease-out;
   position: absolute;
-  top: -3.5%;
+  top: 21%;
   z-index: 1;
   @include flex-row-center-y {
     justify-content: space-between;
   }
-  visibility: hidden;
   height: 0;
-  padding-block: 0;
+  padding: rem(20);
+  visibility: hidden;
   background-color: var(--background-secondary);
 
   > div {
-    @include flex-row-center-y {
-      column-gap: rem(16);
-    }
+    @include flex-row-center-y;
+    flex-wrap: wrap;
+    gap: rem(16);
   }
 
   > div .btn--filter {
@@ -36,14 +26,20 @@
 
 .open {
   visibility: visible;
-  padding-block: rem(10);
-  height: rem(62);
+  width: 78%;
+  height: auto;
+
+  @include set-media(min-width, 64em) {
+    height: rem(62);
+  }
 }
 
 .shrinking {
   visibility: visible;
+  padding-block: 0;
 }
 
 .hidden {
   visibility: hidden;
+  padding-block: 0;
 }

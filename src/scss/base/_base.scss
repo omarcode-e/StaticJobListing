@@ -9,6 +9,7 @@
   @include get-props-from-map($label-colors, "colors");
   @include get-props-from-map($text-colors, "colors");
   @include get-props-from-map($icon-colors, "colors");
+  @include get-props-from-map($shadow-colors, "colors");
 }
 
 * {

@@ -1,7 +1,7 @@
 @use "../abstracts/" as *;
 
 .card {
-  --card-box-shadow-color: #d4e9ec;
+  --card-box-shadow-color: var(--box-shadow-primary);
   --card-background-color: var(--background-secondary);
 
   @include flex-row-center-y;
