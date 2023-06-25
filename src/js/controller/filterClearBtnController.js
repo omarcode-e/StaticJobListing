@@ -2,7 +2,6 @@
 import { async } from "regenerator-runtime";
 import * as model from "../model/model";
 import * as jobListingView from "../view/jobListingView";
-import * as TabletButtonView from "../view/tabletButtonView";
 import * as filterView from "../view/filterView";
 
 /* Reset filter object to default values */
@@ -14,6 +13,7 @@ async function controlFilterClearButton() {
   jobListingView.removeJobEntries();
   filterView.removeAllFilterButtons();
   filterView.removeFilterClearButton();
+  model.state.isFilterOpen = false;
   filterView.removeFilterView();
   jobListingView.renderJobEntries(
     jobListingView.jobListingContainer,
