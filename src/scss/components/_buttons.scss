@@ -54,7 +54,7 @@
     width: rem(32);
     height: rem(32);
     border-radius: 0 rem(4) rem(4) 0;
-    background: url("/src/icons/icon-remove.svg") no-repeat center / 15px 15px;
+    background: url("assets/icons/icon-remove.svg") no-repeat center / 15px 15px;
     background-color: var(--button-remove-background);
     transition: background-color 0.2s ease-out;
   }

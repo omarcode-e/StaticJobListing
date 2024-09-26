@@ -1,5 +1,5 @@
 import { async } from "regenerator-runtime";
-import data from "../../data/data.json";
+import data from "assets/data/data.json";
 
 const state = {
   jobEntries: [...data],

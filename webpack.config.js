@@ -1,7 +1,6 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CopyPlugin = require("copy-webpack-plugin");
 const { argv } = require("process");
 
 const config = {
@@ -30,9 +29,15 @@ const config = {
     new MiniCssExtractPlugin({
       filename: "styles.css",
     }),
-
-    new CopyPlugin({ patterns: [{ from: "./src/images", to: "images" }] }),
   ],
+
+  resolve: {
+    alias: {
+      "@model": path.resolve(__dirname, "src/js/model/"),
+      "@view": path.resolve(__dirname, "src/js/view/"),
+      assets: path.resolve(__dirname, "public/assets/"),
+    },
+  },
 
   module: {
     rules: [
@@ -71,6 +76,7 @@ const config = {
 
   output: {
     filename: "[name].bundle.js",
+    publicPath: "/public",
     path: path.resolve(__dirname, "dist"),
     clean: true,
   },
