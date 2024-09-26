@@ -1,8 +1,7 @@
 "use strict";
 import { async } from "regenerator-runtime";
-import * as model from "../model/model";
-import * as jobListingView from "../view/jobListingView";
-import * as filterView from "../view/filterView";
+import { model } from "@model";
+import { jobListingView, filterView } from "@view";
 
 /* Reset filter object to default values */
 /* Clear Job listings */

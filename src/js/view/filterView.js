@@ -1,7 +1,7 @@
 import { render, clear, getElementPropValue } from "../utilities";
 import { jobListingContainer } from "./jobListingView";
 
-export function renderFilterView() {
+function renderFilterView() {
   const html = `
   <div id="filter" class="card job-listing-filter">
     <div></div>
@@ -54,7 +54,7 @@ function playFilterCollapseAnimation(filter) {
   }
 }
 
-export function removeFilterView() {
+function removeFilterView() {
   const filter = document.getElementById("filter");
   playFilterCollapseAnimation(filter);
 }
@@ -64,7 +64,7 @@ function filterButtonMarkup(buttonValue) {
   return btn;
 }
 
-export function addFilterButton(buttonValue) {
+function addFilterButton(buttonValue) {
   const filter = document.getElementById("filter");
   const filterWrapper = document.getElementById("content");
   playFilterExpandAnimation(filter, filterWrapper);
@@ -73,28 +73,28 @@ export function addFilterButton(buttonValue) {
   render(filterButtonsWrapper, filterButtons, "beforeend");
 }
 
-export function addFilterClearButton() {
+function addFilterClearButton() {
   const container = document.getElementById("filter");
   const clearBtn = '<button class="btn btn--clear">Clear</button>';
   render(container, clearBtn, "beforeend");
 }
 
-export function removeFilterClearButton() {
+function removeFilterClearButton() {
   const filterClearButton = document.querySelector(".btn--clear");
   filterClearButton.remove();
 }
 
-export function removeFilterButton(filterValue) {
+function removeFilterButton(filterValue) {
   const btn = document.querySelector(`.btn--filter[value=${filterValue}]`);
   return btn.remove();
 }
 
-export function removeAllFilterButtons() {
+function removeAllFilterButtons() {
   const filterButtonsWrapper = document.querySelector("#filter > div");
   clear(filterButtonsWrapper);
 }
 
-export function filterClickHandler(handler) {
+function filterClickHandler(handler) {
   const container = document.getElementById("filter");
   return container.addEventListener("click", (e) => {
     if (!e.target.matches(".btn--filter") || e.target.matches(".btn--clear"))
@@ -103,10 +103,22 @@ export function filterClickHandler(handler) {
   });
 }
 
-export function filterClearButtonClickHandler(handler) {
+function filterClearButtonClickHandler(handler) {
   const container = document.getElementById("filter");
   return container.addEventListener("click", (e) => {
     if (!e.target.matches(".btn--clear")) return;
     handler();
   });
 }
+
+export {
+  renderFilterView,
+  removeFilterView,
+  addFilterButton,
+  addFilterClearButton,
+  removeFilterClearButton,
+  removeFilterButton,
+  removeAllFilterButtons,
+  filterClickHandler,
+  filterClearButtonClickHandler,
+};

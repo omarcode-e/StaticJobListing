@@ -1,7 +1,7 @@
 import { render } from "../utilities";
 
 const jobListingContainer = document.getElementById("content");
-export function renderTabletButton(data) {
+function renderTabletButton(data) {
   if (!data || data.length === 0) return "";
   const dataArr = Array.from([data]).flat();
   let html = "";
@@ -12,17 +12,24 @@ export function renderTabletButton(data) {
   return html;
 }
 
-export function getTabletCatagory(e) {
+function getTabletCatagory(e) {
   return e.target.dataset.catagory;
 }
 
-export function getTabletValue(e) {
+function getTabletValue(e) {
   return e.target.value;
 }
 
-export function TabletClickHandler(handler) {
+function tabletClickHandler(handler) {
   jobListingContainer.addEventListener("click", (e) => {
     if (!e.target.matches(".btn--tablet")) return;
     handler(e);
   });
 }
+
+export {
+  renderTabletButton,
+  getTabletCatagory,
+  getTabletValue,
+  tabletClickHandler,
+};

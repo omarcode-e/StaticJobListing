@@ -1,9 +1,7 @@
 "use strict";
 import { async } from "regenerator-runtime";
-import * as model from "../model/model";
-import * as jobListingView from "../view/jobListingView";
-import * as TabletButtonView from "../view/tabletButtonView";
-import * as filterView from "../view/filterView";
+import { model } from "@model";
+import { jobListingView } from "@view";
 
 async function controlJobListing() {
   jobListingView.renderJobEntries(

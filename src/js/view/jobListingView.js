@@ -1,7 +1,7 @@
 import { render } from "../utilities";
 import { renderTabletButton } from "./tabletButtonView";
 
-export const jobListingContainer = document.getElementById("content");
+const jobListingContainer = document.getElementById("content");
 const renderLabel = function (data) {
   let html = "";
   if (data.featured) {
@@ -47,14 +47,16 @@ function createJobListing(data) {
   return html;
 }
 
-export function renderJobEntries(parentElement, data) {
+function renderJobEntries(parentElement, data) {
   let tempHtml = document.createDocumentFragment();
   data.forEach((entry) => tempHtml.append(createJobListing(entry)));
   const finalHtml = tempHtml.textContent;
   return render(parentElement, finalHtml, "beforeend");
 }
 
-export function removeJobEntries() {
+function removeJobEntries() {
   const jobListings = document.querySelectorAll(".job-listing");
   jobListings.forEach((job) => job.remove());
 }
+
+export { renderJobEntries, removeJobEntries, jobListingContainer };
