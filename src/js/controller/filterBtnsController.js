@@ -6,10 +6,10 @@ import * as filterView from "../view/filterView";
 
 async function controlFilterButtons(e) {
   filterView.removeFilterButton(e.target.value);
-  model.removeFilterQuery(e.target.value);
+  model.removeFilter(e.target.value);
   jobListingView.removeJobEntries();
   model.state.isFilterOpen = false;
-  if (model.state.filterQuery.length === 0) {
+  if (model.state.filters.length === 0) {
     filterView.removeAllFilterButtons();
     filterView.removeFilterClearButton();
     filterView.removeFilterView();
@@ -19,7 +19,7 @@ async function controlFilterButtons(e) {
     );
   }
 
-  const filteredEntries = await model.filterJobEntries(null);
+  const filteredEntries = await model.filterJobs(null);
   jobListingView.renderJobEntries(
     jobListingView.jobListingContainer,
     filteredEntries

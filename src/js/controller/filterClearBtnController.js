@@ -9,7 +9,7 @@ import * as filterView from "../view/filterView";
 /* Clear Filter buttons */
 /* Render all Job listings after removing old listings*/
 async function controlFilterClearButton() {
-  model.clearFilterQueries();
+  model.clearFilters();
   jobListingView.removeJobEntries();
   filterView.removeAllFilterButtons();
   filterView.removeFilterClearButton();
@@ -19,7 +19,7 @@ async function controlFilterClearButton() {
     jobListingView.jobListingContainer,
     model.state.jobEntries
   );
-  // console.log("[controlFilterClearButton]", model.state.filterQuery);
+  // console.log("[controlFilterClearButton]", model.state.filters);
 }
 
 filterView.filterClearButtonClickHandler(controlFilterClearButton);

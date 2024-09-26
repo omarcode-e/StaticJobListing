@@ -9,13 +9,13 @@ async function controlJobButtons(e) {
   const buttonValue = e.target.value;
 
   // Check if clicked filter button already exist
-  if (!model.state.filterQuery.includes(buttonValue)) {
+  if (!model.state.filters.includes(buttonValue)) {
     filterView.addFilterButton(buttonValue);
   } else {
     filterView.removeFilterButton(buttonValue);
   }
 
-  const filteredEntries = await model.filterJobEntries(buttonValue);
+  const filteredEntries = await model.filterJobs(buttonValue);
 
   if (filteredEntries.length === 0) {
     jobListingView.removeJobEntries();
